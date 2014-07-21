@@ -1,8 +1,9 @@
 <?php
 
-define( 'L8INC', ABSPATH . 'inc/' );
+define( 'UL13INC', ABSPATH . 'inc/' );
 
-include_once (L8INC . 'lib/func.php');
+include (UL13INC . 'lib/def.php');
+include (UL13INC . 'lib/func.php');
 
 /**
  * @package Tacnix
