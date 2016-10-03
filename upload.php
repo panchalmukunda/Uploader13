@@ -1,10 +1,4 @@
 <?php
-
-define( 'UL13INC', ABSPATH . 'inc/' );
-
-include (UL13INC . 'lib/def.php');
-include (UL13INC . 'lib/func.php');
-
 /**
  * @package Tacnix
  * @subpackage Uploader 1.0.
@@ -21,7 +15,7 @@ function extension( $string ) {
 	return $extension;
 }
 
-function _upload_( $folder, $width_new ) {
+function upload( $folder, $width_new ) {
 
 	if( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' ) {
 		
@@ -31,19 +25,19 @@ function _upload_( $folder, $width_new ) {
 		$errors = 0;
 		
 		// Button click event is post, then.
-		$image = $_FILES[ '_upload' ][ 'name' ];
+		$image = $_FILES[ 'upload' ][ 'name' ];
 		
-		$uploaded_file = $_FILES[ '_upload' ][ 'tmp_name' ];
+		$uploaded_file = $_FILES[ 'upload' ][ 'tmp_name' ];
 		
 		if ( empty( $image ) && empty( $uploaded_file ) ) {
 			
 			$errors = $_FILES[ '_upload' ][ 'error' ];
 			
-			_report_( 'error','Uploading Error!' );
+			error( 'error','Uploading Error!' );
 			
 		} else {
 		
-			$filename = stripslashes( $_FILES[ '_upload' ][ 'name' ] );
+			$filename = stripslashes( $_FILES[ 'upload' ][ 'name' ] );
 			
 			$extension = extension( $filename );
 			$extension = strtolower( $extension );
@@ -51,36 +45,36 @@ function _upload_( $folder, $width_new ) {
 			
 			if ( ( $extension != 'jpg' ) && ( $extension != 'jpeg' ) && ( $extension != 'png' ) && ( $extension != 'gif' ) ) {
 			  
-			  _report_( 'error','Unknown Image extension!' );
+			  error( 'error','Unknown Image extension!' );
 			  
-				$errors = $_FILES[ '_upload' ][ 'error' ];
+				$errors = $_FILES[ 'upload' ][ 'error' ];
 				$errors = 1;
 				
 			} else {
 			
-				$size = filesize( $_FILES[ '_upload' ][ 'tmp_name' ] );
+				$size = filesize( $_FILES[ 'upload' ][ 'tmp_name' ] );
 				
   			if ( $size > MAX_SIZE*5120 ) {
   			  
-  			  _report_( 'error','You have exceeded the size limit!' );
+  			  error( 'error','You have exceeded the size limit!' );
   			  
-  				$errors = $_FILES[ '_upload' ][ 'error' ];
+  				$errors = $_FILES[ 'upload' ][ 'error' ];
   				$errors = 1;
   			}
 			
   			if( $extension == 'jpg' || $extension == 'jpeg' ) {
   			
-  				$uploadedfile = $_FILES[ '_upload' ][ 'tmp_name' ];
+  				$uploadedfile = $_FILES[ 'upload' ][ 'tmp_name' ];
   				$source = imagecreatefromjpeg( $uploaded_file );
   			
   			} else if ($extension == 'png') {
   				
-  				$uploadedfile = $_FILES[ '_upload' ][ 'tmp_name' ];
+  				$uploadedfile = $_FILES[ 'upload' ][ 'tmp_name' ];
   				$source = imagecreatefrompng( $uploaded_file );
   			
   			} else if( $extension == 'gif' ) {
   				
-  				$uploadedfile = $_FILES[ '_upload' ][ 'tmp_name' ];
+  				$uploadedfile = $_FILES[ 'upload' ][ 'tmp_name' ];
   				$source = imagecreatefromgif( $uploaded_file );
   			
   			}
@@ -93,7 +87,7 @@ function _upload_( $folder, $width_new ) {
   			imagecopyresampled( $image_new, $source, 0, 0, 0, 0, $width_new, $height_new, $width, $height );
   			
   			$path = 'images/'.$folder;
-  			$media = $path.$_FILES[ '_upload' ][ 'name' ];
+  			$media = $path.$_FILES[ 'upload' ][ 'name' ];
   			$replace = preg_replace( "/[&']/", "_", $media );
   			
   			imagejpeg( $image_new, $replace, 100 );
