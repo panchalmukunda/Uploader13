@@ -1,11 +1,8 @@
 <?php
 /**
  * @package Tacnix
- * @subpackage Uploader 1.0.
- * @author Mukunda Panchal <mukunda@tacnix.com>
- * 
- * @param extension( string )
- * 
+ * @subpackage Upload 2.0.
+ * @author Mukunda Panchal <mukunda.p@tacnixcreative.agency>
  */
 function extension( $string ) {
 	$i = strrpos( $string,"." );
@@ -15,6 +12,7 @@ function extension( $string ) {
 	return $extension;
 }
 
+// Main function of script.
 function upload( $folder, $width_new ) {
 
 	if( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' ) {
