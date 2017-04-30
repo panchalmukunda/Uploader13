@@ -1,18 +1,16 @@
 <?php
 
-define( 'UL13INC', ABSPATH . 'inc/' );
-
-include (UL13INC . 'lib/def.php');
-include (UL13INC . 'lib/func.php');
-
 /**
  * @package Tacnix
  * @subpackage Uploader 1.0.
  * @author Mukunda Panchal <mukunda@tacnix.com>
  * 
- * @param extension( string )
- * 
  */
+
+define( 'UL13', ABSPATH . 'inc/' );
+include (UL13 . 'lib/data.php');
+include (UL13 . 'lib/value.php');
+
 function extension( $string ) {
 	$i = strrpos( $string,"." );
 	if ( !$i ) { return ""; } 
@@ -21,7 +19,7 @@ function extension( $string ) {
 	return $extension;
 }
 
-function _upload_( $folder, $width_new ) {
+function file_upload( $folder, $width_new ) {
 
 	if( $_SERVER[ 'REQUEST_METHOD' ] == 'POST' ) {
 		
