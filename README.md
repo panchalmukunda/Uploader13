@@ -1,4 +1,4 @@
-Uploader13
+u13
 ==========
 
 Simple single uploading script that can use on all types of upload.
