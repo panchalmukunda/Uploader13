@@ -1,4 +1,4 @@
-IMG Uploader
+Image Uploader
 ==========
 
 Simple single uploading script that can use on all types of upload.
