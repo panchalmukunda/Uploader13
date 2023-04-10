@@ -7,9 +7,9 @@
  * 
  */
 
-define( 'IMGU', ABSPATH . 'inc/img_uploader');
-include (IMGU . 'lib/data.php');
-include (IMGU . 'lib/value.php');
+// define( 'IMGU', ABSPATH . 'inc/img_uploader');
+// include (IMGU . 'lib/data.php');
+// include (IMGU . 'lib/value.php');
 
 function extension( $string ) {
 	$i = strrpos( $string,"." );
